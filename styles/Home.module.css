@@ -1,116 +1,175 @@
 .container {
-  padding: 0 2rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relatives;
 }
 
-.footer {
+.main .title {
+  font-size: 2rem;
+  font-weight: normal;
+  margin-bottom: 4rem;
+  max-width: 480px;
+}
+
+.title span { font-weight: bold; }
+
+.flex {
   display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
-  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+  width: 100%;
+  gap: 4rem;
 }
 
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
+.flex .card {
+  border: 2px solid white;
   border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 200px;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+.card .form__group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+.card .form__group label {
+  display: none;
 }
 
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
+.card .form__group input {
+  padding: .8rem;
+  background-color: var(--dark);
+  border: none;
+  border: 4px solid transparent;
+  border-bottom: 4px solid var(--blue);
+  border-radius: 5px;
+  width: 200px;
+  transition: all .3s ease-in-out;
+  color: white;
 }
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
+.form__group input:focus {
+  outline: none;
+  border: 4px solid var(--blue);
+  animation: round 2s;
 }
 
-@media (max-width: 600px) {
-  .grid {
+.form__group .error {
+  border: 4px solid red;
+  animation: shake 0.2s;
+}
+
+@keyframes shake {
+  0% { margin-left: 0rem; }
+  25% { margin-left: 0.5rem; }
+  75% { margin-left: -0.5rem; }
+  100% { margin-left: 0rem; }
+}
+
+.card button {
+  border: none;
+  border: 4px solid white;
+  background-color: var(--blue);
+  color: white;
+  border-radius: 5px;
+  width: 200px;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: .5rem;
+  position: absolute;
+  bottom: -24px;
+  transition: all .2s ease-in-out;
+}
+
+.card button:hover {
+  background-color: white;
+  color: var(--blue);
+  border: 4px solid var(--blue);
+}
+
+.card button:active {
+  transform: translateY(5px);
+  transition: all .1s ease-in-out;
+}
+
+.main .shorten__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.shorten__box span {
+  color: var(--yellow);
+  font-weight: bold;
+}
+
+.shorten__box button {
+  all: unset;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.shorten__box button:hover {
+  color: var(--blue);
+}
+
+.shorten__box button:active {
+  transform: translateY(5px);
+  transition: all .1s ease-in-out;
+}
+
+.container footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: .4rem;
+  min-width: 240px;
+}
+
+.container .footer span {
+  font-weight: bold;
+}
+
+
+@media (min-width: 425px) {
+  .card .form__group input {
     width: 100%;
-    flex-direction: column;
+  }
+
+  .card button {
+    width: 240px;
   }
 }
