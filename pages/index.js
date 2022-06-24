@@ -33,18 +33,17 @@ export default function Home() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if ( inputRef.current.value === '' ) {
-      return
-    }
+    const url = inputRef.current.value.toLowerCase().replace(/\s/g, '')
+   
+    if ( url === '' ) return alert('Please enter an URL starting with "http", "https", "ftp" or "www."')
 
     const regex = /^(http|https|ftp|www\.)[^\s]+\.[^\s]{2,}$/
-    if ( !inputRef.current.value.match(regex) ) return alert('Invalid URL')
+    if ( !url.match(regex) ) return alert('Invalid URL, your URL must start with "http", "https", "ftp" or "www."')
 
     // remove http:// or https:// from the beginning of the url
-    const url = inputRef.current.value.replace(/^https?:\/\//, '')
-
-    //const url = inputRef.current.value
+    url.replace(/^https?:\/\//, '')
     console.log(url)
+
     // API request to create a short url
     fetch('/api/short-url', {
       method: 'POST',
@@ -58,6 +57,8 @@ export default function Home() {
         //console.log(data)
         setShortUrl(data.shortUrl)
       })
+
+      inputRef.current.value = ''
   }
 
   function handleCopy() {
@@ -82,10 +83,10 @@ export default function Home() {
         </h1>
 
         <div className={styles.flex}>
-          <form className={styles.card} onSubmit={handleSubmit}>
+          <form className={styles.card} onSubmit={handleSubmit} >
             <div className={styles.form__group}>
               <label htmlFor="url">URL</label>
-              <input required className={styles.input} type="text" id="url" ref={inputRef} placeholder="https://www.example.com/brass?advertisement=agreement&baseball=adjustment
+              <input autoComplete="off" required className={styles.input} type="text" id="url" ref={inputRef} placeholder="https://www.example.com/brass?advertisement=agreement&baseball=adjustment
 " />
             </div>
             <button type='submit'>Shorten!</button>
